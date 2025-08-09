@@ -11,9 +11,9 @@ export default function Index () {
   return (
     <View className='index'>
       <NavigationBar
-        search={true}
+        search={false}
         isBack={false}
-        jump={true}
+        jump={false}
         onSearch={(value) => console.log('Search value:', value)}/>
       <Text>you hello!</Text>
     </View>

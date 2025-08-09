@@ -2,7 +2,6 @@ import Taro, { useDidShow } from '@tarojs/taro'
 import { View, Image } from '@tarojs/components'
 import SearchBar from '../SearchBar/SearchBar'
 import { useState } from 'react'
-import './NavigationBar.scss'
 import logo from '../../image/logo.png'
 import backIcon from '../../image/back.png'
 

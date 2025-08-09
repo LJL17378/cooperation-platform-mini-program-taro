@@ -15,7 +15,7 @@ export default function Index () {
         isBack={false}
         jump={true}
         onSearch={(value) => console.log('Search value:', value)}/>
-      <Text>you hello!</Text>
+      <Text>you hello!function</Text>
     </View>
   )
 }

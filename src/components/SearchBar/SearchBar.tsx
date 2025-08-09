@@ -1,6 +1,5 @@
 import { View, Input, Image } from '@tarojs/components'
 import { CSSProperties } from 'react'
-import './SearchBar.scss'
 
 interface SearchBarProps {
   value: string
