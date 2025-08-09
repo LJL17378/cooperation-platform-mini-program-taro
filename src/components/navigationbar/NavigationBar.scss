@@ -1,0 +1,40 @@
+.navigation-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  
+  .search-container, .non-search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 25rpx;
+    
+    .icon {
+      background-color: white;
+      flex-shrink: 0;
+      
+      &.back-icon {
+        cursor: pointer;
+      }
+    }
+    
+    // .nut-searchbar {
+    //   flex: 1;
+    // }
+  }
+  
+  .non-search-container {
+    background-color: #7fbca5;
+    
+    &.back-class {
+      background-color: white;
+    }
+    
+    .platform-name {
+      font-size: 22rpx;
+      margin-left: 25rpx;
+      white-space: nowrap;
+    }
+  }
+}
