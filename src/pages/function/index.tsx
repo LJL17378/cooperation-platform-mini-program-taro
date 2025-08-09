@@ -2,6 +2,7 @@ import { View, Text } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
 import './index.scss'
 import NavigationBar from '../../components/navigationbar/NavigationBar'
+import CustomTabBar from '../../customer-tab-bar'
 
 export default function Index () {
   useLoad(() => {
@@ -16,6 +17,7 @@ export default function Index () {
         jump={true}
         onSearch={(value) => console.log('Search value:', value)}/>
       <Text>you hello!function</Text>
+      <CustomTabBar />
     </View>
   )
 }
