@@ -1,0 +1,104 @@
+.activity-container {
+  box-sizing: border-box;
+  width: 100%;
+  height: fit-content;
+  
+  .activity {
+    width: 700rpx;
+    display: flex;
+    flex-direction: row;
+    height: 160rpx;
+    padding: 20rpx 0;
+    
+    &__cover {
+      height: 100%;
+      width: 250rpx;
+      border-radius: 15rpx;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    &__cover-image {
+      height: 100%;
+      width: 250rpx;
+    }
+    
+    &__badge {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 70rpx;
+      height: 27rpx;
+      color: white;
+      font-size: 18rpx;
+      z-index: 10;
+      border-radius: 0 0 8rpx 0;
+      
+      &--active {
+        background-color: #8CBEAB;
+      }
+      
+      &--ended {
+        background-color: #be8c8c;
+      }
+    }
+    
+    &__content {
+      display: flex;
+      flex-direction: column;
+      margin-left: 25rpx;
+      justify-content: space-between;
+      flex: 1;
+      overflow: hidden;
+    }
+    
+    &__title {
+      font-size: 30rpx;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    
+    &__info-group {
+      display: flex;
+      flex-direction: column;
+      font-size: 20rpx;
+    }
+    
+    &__info {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 10rpx;
+    }
+    
+    &__icon {
+      height: 20rpx;
+      width: 20rpx;
+      margin-right: 10rpx;
+    }
+    
+    &__text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200rpx;
+    }
+    
+    &__separator {
+      margin: 0 20rpx;
+      color: #ccc;
+    }
+    
+    &__divider {
+      height: 1px;
+      background-color: #ebedf0;
+      margin: 25rpx 0;
+    }
+  }
+}

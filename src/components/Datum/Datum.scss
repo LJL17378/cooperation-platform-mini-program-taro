@@ -1,0 +1,68 @@
+.datum-card {
+  width: 340rpx;
+  height: 280rpx;
+  border-radius: 15rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2px 12px rgba(101, 102, 103, 0.199);
+  border: 1px solid rgba(128, 128, 128, 0.212);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:active {
+    transform: translateY(5rpx);
+    box-shadow: 0 1px 6px rgba(101, 102, 103, 0.1);
+  }
+  
+  &__image {
+    height: 150rpx;
+    width: 100%;
+    object-fit: cover;
+  }
+  
+  &__title {
+    width: 100%;
+    padding: 0 25rpx;
+    box-sizing: border-box;
+    font-size: 30rpx;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
+    text-align: center;
+    margin: 10rpx 0;
+  }
+  
+  &__theme-container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 20rpx;
+    width: 300rpx;
+    margin-bottom: 20rpx;
+    font-size: 20rpx;
+    align-items: center;
+  }
+  
+  &__theme-icon {
+    width: 25rpx;
+    height: 25rpx;
+    flex-shrink: 0;
+  }
+  
+  &__theme {
+    margin-left: 10rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 28rpx;
+    flex: 1;
+    min-width: 0;
+  }
+}

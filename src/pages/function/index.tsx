@@ -10,14 +10,14 @@ export default function Index () {
   })
 
   return (
-    <View className='index'>
+    <>
       <NavigationBar
         search={true}
         isBack={false}
         jump={true}
         onSearch={(value) => console.log('Search value:', value)}/>
-      <Text>you hello!function</Text>
+      <View className='page-container'/>
       <CustomTabBar />
-    </View>
+    </>
   )
 }
