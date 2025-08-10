@@ -1,0 +1,21 @@
+.page-container {
+  padding: 20px;
+}
+.datums{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.news-list {
+  padding: 20rpx;
+  box-sizing: border-box;
+  
+  .news-item {
+    margin-bottom: 30rpx;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

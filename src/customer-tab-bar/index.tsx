@@ -42,12 +42,31 @@ const CustomTabBar: React.FC = () => {
     }, 100);
   };
 
-  // tab切换处理
-  const switchTab = (item: TabItem, index: number) => {
-    setSelected(index);
-    Taro.switchTab({
-      url: item.pagePath
-    });
+  // 更新选中状态
+  const updateSelected = () => {
+    const pages = Taro.getCurrentPages();
+    if (pages.length > 0) {
+      const currentPage = pages[pages.length - 1];
+      const route = currentPage?.route || '';
+      
+      // 处理分包路径：移除 "packages/" 前缀
+      const normalizedRoute = route.replace(/^packages\//, '');
+      const currentPath = `/${normalizedRoute}`;
+      
+      const index = list.findIndex(item => 
+        item.pagePath === currentPath || 
+        item.pagePath.includes(currentPath)
+      );
+      
+      if (index !== -1) {
+        setSelected(index);
+      }
+    }
+  };
+
+  // tab切换处理 - 仅负责跳转
+  const switchTab = (item: TabItem) => {
+    Taro.switchTab({ url: item.pagePath });
   };
 
   // 组件挂载时执行
@@ -56,23 +75,29 @@ const CustomTabBar: React.FC = () => {
     getTabBarHeight();
   }, []);
 
-  // 监听路由变化，更新选中状态
+  // 当list更新后，更新选中状态
   useEffect(() => {
-    const updateSelected = () => {
-      const pages = Taro.getCurrentPages();
-      if (pages.length > 0) {
-        const currentPage = pages[pages.length - 1];
-        const currentPath = `/${currentPage.route}`;
-        const index = list.findIndex(item => item.pagePath === currentPath);
-        if (index !== -1) {
-          setSelected(index);
-        }
-      }
-    };
-
     if (list.length > 0) {
       updateSelected();
     }
+  }, [list]);
+
+  // 监听路由变化事件，确保状态同步
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (list.length > 0) {
+        updateSelected();
+      }
+    };
+
+    // 同时监听常规路由变化和Tab切换事件
+    Taro.eventCenter.on('__taroRouterChange', handleRouteChange);
+    Taro.eventCenter.on('__taroSwitchTab', handleRouteChange);
+    
+    return () => {
+      Taro.eventCenter.off('__taroRouterChange', handleRouteChange);
+      Taro.eventCenter.off('__taroSwitchTab', handleRouteChange);
+    };
   }, [list]);
 
   return (
@@ -82,7 +107,7 @@ const CustomTabBar: React.FC = () => {
         <View
           key={index}
           className="tab-bar-item"
-          onClick={() => switchTab(item, index)}
+          onClick={() => switchTab(item)}
         >
           <Image
             src={selected === index ? item.selectedIconPath : item.iconPath}
