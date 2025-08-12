@@ -65,6 +65,9 @@ importers:
       react-dom:
         specifier: ^18.0.0
         version: 18.3.1(react@18.3.1)
+      vant-weapp:
+        specifier: ^0.5.29
+        version: 0.5.29
     devDependencies:
       '@babel/core':
         specifier: ^7.24.4
@@ -5638,6 +5641,9 @@ packages:
   validate-npm-package-name@5.0.1:
     resolution: {integrity: sha512-OljLrQ9SQdOUqTaQxqL5dEfZWrXExyyWsozYlAWFawPVNuD83igl7uJD2RTkNMbniIYgt8l81eCJGIdQF7avLQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  vant-weapp@0.5.29:
+    resolution: {integrity: sha512-RMc0Ga914XFwspw2WuOMU8bOHlIkua8X1DoQ/KPnGQzjwT1uEL4S7W186EmaHF1wN2krB9BVd0LdRRt39dGh6Q==}
 
   vfile-message@4.0.3:
     resolution: {integrity: sha512-QTHzsGd1EhbZs4AsQ20JX1rC3cOlt/IWJruk893DfLRr57lcnOeMaWG4K0JrRta4mIJZKth2Au3mM3u03/JWKw==}
@@ -12117,6 +12123,8 @@ snapshots:
       builtins: 1.0.3
 
   validate-npm-package-name@5.0.1: {}
+
+  vant-weapp@0.5.29: {}
 
   vfile-message@4.0.3:
     dependencies:

@@ -1,21 +1,160 @@
-.page-container {
-  padding: 20px;
+/* index.scss */
+.page-content {
+  padding: 0 0 20rpx;
+  background: #fff;
 }
-.datums{
+
+.home-swiper {
+  width: 100%;
+  height: 320rpx;
+
+  .swiper-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .swiper-item-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiperTitle {
+    position: absolute;
+    z-index: 2;
+    left: 24rpx;
+    top: 16rpx;
+    color: #fff;
+    font-size: 28rpx;
+    font-weight: bold;
+    text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.4);
+  }
+}
+
+.site-blank {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
-}
-.news-list {
-  padding: 20rpx;
-  box-sizing: border-box;
-  
-  .news-item {
-    margin-bottom: 30rpx;
-    
-    &:last-child {
-      margin-bottom: 0;
+  padding: 20rpx 0;
+  margin: 0 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+
+  .site-item {
+    width: 33.3333%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10rpx 0;
+
+    .icon {
+      width: 80rpx;
+      height: 80rpx;
+      margin-bottom: 8rpx;
+    }
+
+    .site-name {
+      font-size: 24rpx;
+      color: #333;
     }
   }
+}
+
+.indexNews-list {
+  padding: 0 20rpx;
+
+  .indexNews-item {
+    display: flex;
+    margin-top: 25rpx;
+    border-radius: 10rpx;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 10rpx;
+    border: rgba(170, 170, 170, 0.199) solid 4rpx;
+    
+    // 新增：确保容器不会超出边界
+    overflow: hidden; // 关键修复
+
+    .indexNews-content {
+      flex: 1;
+      min-width: 0; // 关键修复：允许内容收缩
+      padding-right: 20rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; // 垂直居中内容
+
+      .indexNews-title {
+        font-weight: bold;
+        width: 100%;
+        margin-top: 0; // 调整顶部间距
+        margin-bottom: 10rpx; // 添加底部间距
+        font-size: 30rpx;
+        color: black;
+        
+        // 修正省略号设置
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+        // 新增：确保元素不会扩展
+        flex-shrink: 1;
+      }
+
+      .indexNews-intro {
+        font-size: 26rpx;
+        color: #666;
+        line-height: 1.5;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        
+        // 新增：确保多行省略生效
+        word-break: break-all;
+      }
+    }
+
+    .indexNews-cover {
+      width: 140rpx;
+      height: 140rpx;
+      border-radius: 8rpx;
+      flex-shrink: 0;
+      object-fit: cover; // 确保图片填充
+    }
+  }
+}
+
+.bottom {
+  padding: 30rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .loading-row {
+    display: flex;
+    align-items: center;
+    gap: 15rpx;
+    font-size: 26rpx;
+    color: #999;
+  }
+
+  .to-login {
+    display: flex;
+    align-items: center;
+    font-size: 26rpx;
+    color: #7fbca5;
+  }
+
+  .end-tip {
+    font-size: 26rpx;
+    color: #999;
+  }
+}
+
+.scrollarea {
+  background: #ffffff;
 }

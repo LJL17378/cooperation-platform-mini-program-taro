@@ -62,7 +62,8 @@
     "@tarojs/shared": "4.1.5",
     "@tarojs/taro": "4.1.5",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "vant-weapp": "^0.5.29"
   },
   "devDependencies": {
     "@babel/core": "^7.24.4",

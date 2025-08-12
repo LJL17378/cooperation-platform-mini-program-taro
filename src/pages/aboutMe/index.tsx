@@ -1,4 +1,4 @@
-import { View, Text } from '@tarojs/components'
+import { View } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
 import './index.scss'
 import NavigationBar from '../../components/navigationbar/NavigationBar'
