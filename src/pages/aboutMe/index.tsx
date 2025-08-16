@@ -1,17 +1,77 @@
-import { View } from '@tarojs/components'
-import { useLoad } from '@tarojs/taro'
-import './index.scss'
+import Taro, { useDidShow } from '@tarojs/taro'
+import { View, ScrollView, Image } from '@tarojs/components'
+import { useState } from 'react'
 import NavigationBar from '../../components/navigationbar/NavigationBar'
 import CustomTabBar from '../../customer-tab-bar/index'
-import Achievement from '../../components/Achievement/Achievement'
 import Activity from '../../components/Activity/Activity'
 import Datum from '../../components/Datum/Datum'
-import News from '../../components/News/News'
+import { useScrollAreaHeight } from '../../hooks/useScrollAreaHeight'
+import { getUserInfo, getUserActivities, getDatums } from '../../service/aboutMeService'
+import './index.scss'
 
-export default function Index() {
-  useLoad(() => {
-    console.log('Page loaded.')
+// 导入所有需要的本地图片
+import maleIcon from '../../image/男.svg'
+import femaleIcon from '../../image/女.svg'
+import unknownGenderIcon from '../../image/性别.svg'
+import rightIcon from '../../image/右.svg'
+import logoutIcon from '../../image/退出登录.svg'
+import myActivityIcon from '../../image/我的活动.png'
+import rightRightIcon from '../../image/右_右.svg'
+import datumIcon from '../../image/培训资料.png'
+import defaultAvatar from '../../image/默认头像.png' // 添加一个默认头像
+
+const AboutMe = () => {
+  const scrollHeight = useScrollAreaHeight()
+  const [userInfo, setUserInfo] = useState({
+    gender: 'UNKNOWN' as 'MALE' | 'FEMALE' | 'UNKNOWN',
+    uid: '',
+    sid: '',
+    realName: '',
+    qqAccount: '',
+    phoneAccount: '',
+    avatarUrl: '',
   })
+  const [activities, setActivities] = useState<any[]>([])
+  const [datums, setDatums] = useState<any[]>([])
+
+  // 加载数据
+  const loadData = async () => {
+    try {
+      const [userData, activityData, datumData] = await Promise.all([
+        getUserInfo(),
+        getUserActivities(),
+        getDatums(),
+      ])
+      setUserInfo(userData)
+      setActivities(activityData)
+      setDatums(datumData)
+    } catch (error) {
+      console.error('数据加载失败:', error)
+    }
+  }
+
+  // 页面显示时加载数据
+  useDidShow(() => {
+    loadData()
+  })
+
+  // 处理跳转
+  const handleNavigate = (url: string) => {
+    Taro.navigateTo({ url })
+  }
+
+  // 处理退出登录
+  const handleLogout = () => {
+    // TODO: 实际项目中需要清除token等操作
+    Taro.showToast({
+      title: '已退出登录',
+      icon: 'success',
+      duration: 1500,
+      complete: () => {
+        Taro.navigateTo({ url: '/pages/login/index' })
+      }
+    })
+  }
 
   return (
     <>
@@ -19,68 +79,133 @@ export default function Index() {
         search={false}
         isBack={false}
         jump={false}
-        onSearch={(value) => console.log('Search value:', value)} />
-      <View className='page-container'>
-        <Achievement
-          cover="https://www.wetools.com/imgplaceholder/800x240"
-          title="Achievement Title"
-          time="2023-10-01" />
-        <Activity
-          state={true}
-          cover="https://www.wetools.com/imgplaceholder/800x240"
-          title="2023年度技术交流会"
-          location="北京国家会议中心"
-          theme="人工智能"
-          timeLine="2023-10-15 至 2023-10-17"
-        />
-        <Activity
-          state={false}
-          cover="https://www.wetools.com/imgplaceholder/800x240"
-          title="前端开发工作坊"
-          location="上海科技馆"
-          theme="React与Taro开发"
-          timeLine="2023-08-20 至 2023-08-22"
-        />
-        <View className='datums'>
-          <Datum
-            cover="https://www.wetools.com/imgplaceholder/800x240"
-            title="2023年度技术报告"
-            theme="人工智能与机器学习"
-          />
+        onSearch={(value) => console.log('Search value:', value)}
+      />
 
-          <Datum
-            cover="https://www.wetools.com/imgplaceholder/800x240"
-            title="前端开发最佳实践"
-            theme="React与Taro框架"
-          />
-
-          <Datum
-            cover="https://www.wetools.com/imgplaceholder/800x240"
-            title="企业数字化转型指南"
-            theme="云计算与大数据"
-          />
+      <ScrollView
+        style={{ height: `${scrollHeight}px` }}
+        scrollY
+        className='about-me'
+      >
+        <View className='about-me__container'>
+          {/* 用户信息区域 */}
+          <View className='about-me__user-info'>
+            <Image
+              className='about-me__avatar'
+              src={userInfo.avatarUrl || defaultAvatar}
+              mode='aspectFill'
+            />
+            
+            <View className='about-me__info-group'>
+              <View className='about-me__name-row'>
+                <View className='about-me__name-section'>
+                  <View className='about-me__name'>{userInfo.realName || '未设置姓名'}</View>
+                  {userInfo.gender === 'MALE' && (
+                    <Image className='about-me__gender-icon' src={maleIcon} />
+                  )}
+                  {userInfo.gender === 'FEMALE' && (
+                    <Image className='about-me__gender-icon' src={femaleIcon} />
+                  )}
+                  {userInfo.gender === 'UNKNOWN' && (
+                    <Image className='about-me__gender-icon' src={unknownGenderIcon} />
+                  )}
+                </View>
+                
+                <View className='about-me__edit-btn' onClick={() => handleNavigate('/pages/editInfo/index')}>
+                  <View className='about-me__edit-text'>修改</View>
+                  <Image className='about-me__edit-icon' src={rightIcon} />
+                </View>
+              </View>
+              
+              <View className='about-me__info-row'>
+                <View>学号</View>
+                <View className='about-me__info-value'>{userInfo.sid || '未设置学号'}</View>
+              </View>
+              
+              <View className='about-me__contact-row'>
+                <View className='about-me__contact-item'>
+                  <View>QQ</View>
+                  <View className='about-me__contact-value'>{userInfo.qqAccount || '未设置QQ'}</View>
+                </View>
+                
+                <View className='about-me__contact-item'>
+                  <View>Tel</View>
+                  <View className='about-me__contact-value'>{userInfo.phoneAccount || '未设置电话'}</View>
+                </View>
+              </View>
+            </View>
+          </View>
+          
+          {/* 退出登录按钮 */}
+          <View className='about-me__logout-btn' onClick={handleLogout}>
+            <View className='about-me__logout-icon-container'>
+              <Image className='about-me__logout-icon' src={logoutIcon} />
+            </View>
+            <View className='about-me__logout-text'>退出登录</View>
+          </View>
+          
+          <View className='about-me__divider' />
+          
+          {/* 我的活动区域 */}
+          <View className='about-me__section-header'>
+            <Image className='about-me__section-title' mode='heightFix' src={myActivityIcon} />
+            <View className='about-me__more-link' onClick={() => handleNavigate('/pages/myActivity/index')}>
+              <View className='about-me__more-text'>查看更多</View>
+              <Image className='about-me__more-icon' src={rightRightIcon} />
+            </View>
+          </View>
+          
+          <View className='about-me__activities'>
+            {activities.length === 0 ? (
+              <View className='about-me__empty-tip'>到底啦~</View>
+            ) : (
+              activities.slice(0, 2).map((item) => (
+                <Activity
+                  key={item.activity_id}
+                  state={item.ongoing}
+                  cover={item.coverURL || defaultAvatar} // 使用默认图片作为后备
+                  title={item.title}
+                  location={item.activity_address}
+                  theme={item.classify_name}
+                  timeLine={item.activity_date}
+                  onClick={() => handleNavigate(`/pages/activityContent/index?id=${item.activity_id}`)}
+                />
+              ))
+            )}
+          </View>
+          
+          {/* 培训资料区域 */}
+          <View className='about-me__section-header'>
+            <Image className='about-me__section-title' mode='heightFix' src={datumIcon} />
+            <View className='about-me__more-link' onClick={() => handleNavigate('/pages/plate/index?type=培训资料')}>
+              <View className='about-me__more-text'>查看更多</View>
+              <Image className='about-me__more-icon' src={rightRightIcon} />
+            </View>
+          </View>
+          
+          <View className='about-me__datums'>
+            {datums.length === 0 ? (
+              <View className='about-me__empty-tip'>到底啦~</View>
+            ) : (
+              <View className='about-me__datum-grid'>
+                {datums.slice(0, 6).map((item) => (
+                  <Datum
+                    key={item.id}
+                    cover={item.coverURL || defaultAvatar} // 使用默认图片作为后备
+                    title={item.title}
+                    theme={item.introduction}
+                    onClick={() => handleNavigate(`/pages/datumContent/index?id=${item.id}`)}
+                  />
+                ))}
+              </View>
+            )}
+          </View>
         </View>
-        <View className="news-list">
-      <News
-        title="2023年度技术峰会圆满结束"
-        content="本次峰会邀请了多位行业专家分享前沿技术，吸引了超过500名开发者参与。"
-        cover="https://www.wetools.com/imgplaceholder/800x240"
-      />
+      </ScrollView>
       
-      <News
-        title="新产品发布会即将举行"
-        content="我们将在下个月推出全新产品线，敬请期待。发布会将在公司官网同步直播。"
-        cover="https://www.wetools.com/imgplaceholder/800x240"
-      />
-      
-      <News
-        title="开源项目获得社区贡献奖"
-        content="感谢所有贡献者，我们的开源项目获得了年度最佳社区贡献奖。"
-        cover="https://www.wetools.com/imgplaceholder/800x240"
-      />
-    </View>
-      </View>
       <CustomTabBar />
     </>
   )
 }
+
+export default AboutMe

@@ -3,6 +3,8 @@ export default defineAppConfig({
     'pages/index/index',
     'pages/aboutMe/index',
     'pages/function/index',
+    'pages/login/index',
+    'pages/editInfo/index',
   ],
   window: {
     backgroundTextStyle: 'light',

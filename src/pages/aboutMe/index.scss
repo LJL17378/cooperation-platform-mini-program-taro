@@ -1,21 +1,216 @@
-.page-container {
-  padding: 20px;
-}
-.datums{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.news-list {
-  padding: 20rpx;
+.about-me {
+  // 滚动区域宽度设为100%，不再有padding
+  width: 100%;
   box-sizing: border-box;
+
+  // 添加容器来处理padding
+  &__container {
+    padding: 0 25rpx;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  &__user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 200rpx;
+    margin-top: 20rpx;
+  }
   
-  .news-item {
-    margin-bottom: 30rpx;
-    
-    &:last-child {
-      margin-bottom: 0;
+  &__avatar {
+    width: 180rpx;
+    height: 180rpx;
+    border-radius: 90rpx;
+    overflow: hidden;
+    background-color: #f5f5f5;
+  }
+  
+  &__info-group {
+    height: 170rpx;
+    margin-left: 40rpx;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &__name-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &__name-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  &__name {
+    font-size: 35rpx;
+    font-weight: bold;
+    margin-right: 10rpx;
+  }
+  
+  &__gender-icon {
+    width: 25rpx;
+    height: 25rpx;
+  }
+  
+  &__edit-btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  &__edit-text {
+    font-size: 20rpx;
+    color: gray;
+  }
+  
+  &__edit-icon {
+    height: 20rpx;
+    width: 20rpx;
+    margin-left: 5rpx;
+  }
+  
+  &__info-row {
+    margin-top: 25rpx;
+    height: 35rpx;
+    font-size: 25rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  &__info-value {
+    margin-left: 30rpx;
+    color: #333;
+  }
+  
+  &__contact-row {
+    margin-top: 20rpx;
+    height: 35rpx;
+    font-size: 25rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  &__contact-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  &__contact-value {
+    margin-left: 30rpx;
+    color: #333;
+  }
+  
+  &__logout-btn {
+    height: 60rpx;
+    width: 240rpx;
+    margin: 20rpx 0 20rpx 25rpx;
+    border-radius: 30rpx;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #7FBCA5;
+  }
+  
+  &__logout-icon-container {
+    margin-left: 7rpx;
+    border-radius: 25rpx;
+    width: 50rpx;
+    height: 50rpx;
+    background-color: white;
+    box-sizing: border-box;
+    padding: 5rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  &__logout-icon {
+    width: 30rpx;
+    height: 30rpx;
+  }
+  
+  &__logout-text {
+    font-size: 30rpx;
+    margin-left: 25rpx;
+    color: white;
+  }
+  
+  &__divider {
+    height: 1rpx;
+    background-color: #eee;
+    margin: 10rpx 0;
+  }
+  
+  &__section-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30rpx 0 20rpx;
+  }
+  
+  &__section-title {
+    height: 50rpx;
+    width: 200rpx;
+  }
+  
+  &__more-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  &__more-text {
+    font-size: 25rpx;
+    color: gray;
+  }
+  
+  &__more-icon {
+    height: 40rpx;
+    width: 40rpx;
+    margin-left: 5rpx;
+  }
+  
+  &__activities {
+    min-height: 200rpx;
+  }
+  
+  &__empty-tip {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #868686;
+    font-size: 25rpx;
+    margin-top: 25rpx;
+  }
+  
+  &__datums {
+    .empty-tip {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      color: #868686;
+      font-size: 25rpx;
+      margin: 25rpx 0;
     }
+  }
+  
+  &__datum-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 }

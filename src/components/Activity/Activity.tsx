@@ -1,4 +1,6 @@
 import { View, Image } from '@tarojs/components'
+import branchIcon from '../../image/代码分支 (1).png'
+import positionIcon from '../../image/定位.png'
 
 interface ActivityProps {
   state: boolean
@@ -7,13 +9,14 @@ interface ActivityProps {
   location: string
   theme: string
   timeLine: string
+  onClick?: () => void;
 }
 
 const Activity: React.FC<ActivityProps> = (props) => {
-  const { state, cover, title, location, theme, timeLine } = props
+  const { state, cover, title, location, theme, timeLine, onClick } = props
 
   return (
-    <View className="activity-container">
+    <View className="activity-container" onClick={onClick}>
       <View className="activity">
         <View className="activity__cover">
           <View 
@@ -31,7 +34,7 @@ const Activity: React.FC<ActivityProps> = (props) => {
             <View className="activity__info">
               <Image 
                 className="activity__icon" 
-                src="/image/定位.png" 
+                src={positionIcon} 
                 mode="aspectFill" 
               />
               <View className="activity__text">{location}</View>
@@ -40,7 +43,7 @@ const Activity: React.FC<ActivityProps> = (props) => {
             <View className="activity__info">
               <Image 
                 className="activity__icon" 
-                src="/image/代码分支 (1).png" 
+                src={branchIcon} 
                 mode="aspectFill" 
               />
               <View className="activity__text">{theme}</View>

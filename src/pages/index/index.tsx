@@ -73,7 +73,7 @@ export default function Index() {
     if (isLoggedIn) {
       fetchNewsPage(1)
     }
-    
+
     // 计算空位数
     const newEmptyNum = Math.max(0, 3 - sites.length - 1) // 减去"更多"按钮
     setEmptyNum(newEmptyNum)
@@ -89,7 +89,7 @@ export default function Index() {
   const fetchNewsPage = async (p: number) => {
     if (isLoading || isEnd) return
     setIsLoading(true)
-    
+
     const res = await mockFetchNewsPage(p, num)
     if (res.code === 200) {
       setNews(prev => [...prev, ...res.data.list])
@@ -112,20 +112,20 @@ export default function Index() {
 
     const tryFill = () => {
       if (!isMounted || isEnd || isLoading || !hasLogined) return
-      
+
       Taro.createSelectorQuery()
         .select('#content')
         .boundingClientRect((rectResult) => {
           if (!isMounted) return
-          
+
           let contentHeight: number | null = null
-          
+
           if (Array.isArray(rectResult) && rectResult.length > 0) {
             contentHeight = rectResult[0].height
           } else if (rectResult && !Array.isArray(rectResult)) {
             contentHeight = rectResult.height
           }
-          
+
           if (contentHeight !== null && contentHeight < scrollHeight) {
             fetchNewsPage(page).catch(console.error)
           }
@@ -183,17 +183,17 @@ export default function Index() {
           {/* 轮播 */}
           <Swiper className="home-swiper" autoplay circular duration={1000}>
             {swiperItems.map((item) => (
-              <SwiperItem 
-                key={item.id} 
+              <SwiperItem
+                key={item.id}
                 onClick={() => toNews(item.id)}
                 className="swiper-item"
               >
                 <View className="swiper-item-inner">
                   <Text className="swiperTitle">{item.title}</Text>
-                  <Image 
-                    src={item.coverURL} 
-                    mode="aspectFill" 
-                    className="swiper-image" 
+                  <Image
+                    src={item.coverURL}
+                    mode="aspectFill"
+                    className="swiper-image"
                   />
                 </View>
               </SwiperItem>
@@ -204,16 +204,16 @@ export default function Index() {
           <View className="site-blank">
             {/* 已有的站点 */}
             {sites.map((site, index) => (
-              <View 
+              <View
                 key={index}
-                className="site-item" 
+                className="site-item"
                 onClick={() => navigateToSite(site.site)}
               >
                 <Image className="icon" src={site.icon} mode="heightFix" />
                 <View className="site-name">{site.name}</View>
               </View>
             ))}
-            
+
             {/* 虚位以待 */}
             {Array.from({ length: emptyNum }).map((_, index) => (
               <View key={`empty-${index}`} className="site-item">
@@ -221,7 +221,7 @@ export default function Index() {
                 <View className="site-name">虚位以待</View>
               </View>
             ))}
-            
+
             {/* 更多按钮 */}
             <View className="site-item">
               <Image className="icon" src={moreIcon} mode="heightFix" />
@@ -230,34 +230,34 @@ export default function Index() {
           </View>
 
           {/* 新闻公告标题 */}
-          <Image 
-            src={newsTitle} 
-            style={{ height: '50rpx', width: '200rpx', margin: '20rpx 0 10rpx 25rpx' }} 
-            mode="heightFix" 
+          <Image
+            src={newsTitle}
+            style={{ height: '50rpx', width: '200rpx', margin: '20rpx 0 10rpx 25rpx' }}
+            mode="heightFix"
           />
 
           {/* 新闻列表 */}
           <View className="indexNews-list">
-  {news.map(item => (
-    <View 
-      key={item.id} 
-      className="indexNews-item" 
-      onClick={() => toNews(item.id)}
-    >
-      <View className="indexNews-content">
-        <Text className="indexNews-title">{item.title}</Text>
-        {item.introduction && (
-          <Text className="indexNews-intro">{item.introduction}</Text>
-        )}
-      </View>
-      <Image
-        className="indexNews-cover"
-        src={item.coverURL || 'https://www.wetools.com/imgplaceholder/800x240'}
-        mode="aspectFill"
-      />
-    </View>
-  ))}
-</View>
+            {news.map(item => (
+              <View
+                key={item.id}
+                className="indexNews-item"
+                onClick={() => toNews(item.id)}
+              >
+                <View className="indexNews-content">
+                  <Text className="indexNews-title">{item.title}</Text>
+                  {item.introduction && (
+                    <Text className="indexNews-intro">{item.introduction}</Text>
+                  )}
+                </View>
+                <Image
+                  className="indexNews-cover"
+                  src={item.coverURL || 'https://www.wetools.com/imgplaceholder/800x240'}
+                  mode="aspectFill"
+                />
+              </View>
+            ))}
+          </View>
 
           {/* 底部状态 */}
           <View className="bottom">
