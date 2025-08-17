@@ -1,4 +1,191 @@
-.page-container {
-  padding: 20px;
-  background-color: #0091ff;
+// 引入变量和混合
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+// 防止scrollview偏移的包裹层
+.scroll-wrapper {
+  padding: 0 25rpx;
+  box-sizing: border-box;
+}
+
+// 编辑信息页面样式
+.edit-info {
+  padding: 20rpx 0;
+  
+  &__card {
+    border: 1rpx solid rgba(128, 128, 128, 0.212);
+    border-radius: 20rpx;
+    padding: 25rpx;
+    box-sizing: border-box;
+    background-color: #fff;
+  }
+  
+  &__item {
+    @include flex-row-between;
+    align-items: center;
+    min-height: 80rpx;
+    padding: 15rpx 0;
+  }
+  
+  &__label {
+    font-size: 30rpx;
+    color: #333;
+    flex-shrink: 0;
+  }
+  
+  &__value {
+    @include flex-row;
+    align-items: center;
+    justify-content: flex-end;
+    flex-grow: 1;
+  }
+  
+  &__text {
+    font-size: 30rpx;
+    color: #999;
+    margin-right: 15rpx;
+    text-align: right;
+  }
+  
+  &__avatar {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+  }
+  
+  &__arrow {
+    width: 30rpx;
+    height: 30rpx;
+    margin-left: 10rpx;
+  }
+  
+  &__btn-container {
+    @include flex-center;
+    margin-top: 50rpx;
+    margin-bottom: 50rpx;
+  }
+  
+  &__btn {
+    @include flex-center;
+    width: 400rpx;
+    height: 100rpx;
+    border-radius: 50rpx;
+    background-color: $primary-color;
+    color: #fff;
+    font-size: 35rpx;
+    
+    &-text {
+      color: #fff;
+    }
+  }
+}
+
+// Taroify 组件样式覆盖
+.taroify-action-sheet {
+  &__header {
+    font-size: 32rpx !important;
+    font-weight: bold;
+    padding: 30rpx 0 20rpx !important;
+    text-align: center;
+  }
+  
+  &__action {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20rpx;
+  }
+  
+  &__button {
+    height: 100rpx !important;
+    line-height: 100rpx !important;
+    font-size: 32rpx !important;
+    border-top: 1rpx solid #eee !important;
+    
+    &:first-child {
+      border-top-left-radius: 0 !important;
+      border-top-right-radius: 0 !important;
+    }
+  }
+}
+
+.taroify-button {
+  font-size: 32rpx !important;
+  height: auto !important;
+  line-height: normal !important;
+  padding: 25rpx 0 !important;
+  border-radius: 25rpx !important;
+  
+  &--text {
+    color: #333 !important;
+    background-color: transparent !important;
+    
+    // &:active {
+    //   background-color: rgba(0, 0, 0, 0.05) !important;
+    // }
+  }
+}
+
+// 通知样式
+.taroify-notify {
+  font-size: 28rpx !important;
+  padding: 20rpx 30rpx !important;
+}
+
+// 编辑表单样式
+.edit-sheet {
+  padding: 25rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  &__input {
+    width: 100%;
+    height: 80rpx;
+    border: 1.5px solid $primary-color;
+    border-radius: 15rpx;
+    padding: 0 25rpx;
+    font-size: 28rpx;
+    box-sizing: border-box;
+    margin-bottom: 40rpx;
+    
+    &::placeholder {
+      color: #ccc;
+    }
+  }
+  
+  &__confirm-btn {
+    margin-top: 20rpx;
+    width: 100%;
+  }
+}
+
+// 性别选择样式
+.gender-sheet {
+  width: 100%;
+  
+  &__item {
+    margin-bottom: 20rpx;
+    @include flex-center;
+    width: 100%;
+    height: 100rpx;
+    font-size: 35rpx;
+    border-radius: 25rpx;
+    transition: all 0.3s;
+    
+    // &--active {
+    //   background-color: rgba(0, 121, 77, 0.1);
+    //   color: $primary-color;
+    //   font-weight: bold;
+    // }
+  }
+  
+  &__confirm-btn {
+    margin-top: 40rpx;
+  }
+}
+
+// 分割线样式
+.taroify-divider {
+  margin: 10rpx 0 !important;
 }

@@ -2,57 +2,61 @@
   margin-top: 25rpx;
   border: 4rpx solid rgba(170, 170, 170, 0.199);
   border-radius: 10rpx;
-  height: 160rpx; // 原高度140rpx + 上下padding各10rpx
   padding: 10rpx;
   display: flex;
   justify-content: space-between;
   background-color: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
+
   &:active {
     transform: translateY(2px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
-  
+
   &__content {
-    padding-left: 15rpx;
-    display: flex;
-    flex-direction: column;
     flex: 1;
-    min-width: 0; // 确保文本截断生效
+      min-width: 0; // 关键修复：允许内容收缩
+      padding-right: 20rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; // 垂直居中内容
   }
-  
+
   &__title {
     font-weight: bold;
+    width: 100%;
+    margin-top: 0; // 调整顶部间距
+    margin-bottom: 10rpx; // 添加底部间距
     font-size: 30rpx;
-    color: #333;
+    color: black;
+
+    // 修正省略号设置
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-top: 5rpx;
-    line-height: 1.4;
+
+    // 新增：确保元素不会扩展
+    flex-shrink: 1;
   }
-  
+
   &__description {
-    margin-top: 15rpx;
-    font-size: 24rpx;
-    color: #999;
-    word-break: break-all;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    font-size: 26rpx;
+    color: #666;
     line-height: 1.5;
-    max-height: 70rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+
+    // 新增：确保多行省略生效
+    word-break: break-all;
   }
-  
+
   &__cover {
-    height: 140rpx;
     width: 140rpx;
-    background-color: #f5f7fa;
+    height: 140rpx;
     border-radius: 8rpx;
     flex-shrink: 0;
-    margin-left: 15rpx;
+    object-fit: cover; // 确保图片填充
   }
 }

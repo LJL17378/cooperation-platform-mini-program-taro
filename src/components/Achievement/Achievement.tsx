@@ -4,13 +4,14 @@ interface AchievementProps {
   cover: string
   title: string
   time: string
+  onClick?: () => void;
 }
 
 const Achievement: React.FC<AchievementProps> = (props) => {
-  const { cover, title, time } = props
+  const { cover, title, time, onClick } = props
 
   return (
-    <View className="achievement-card">
+    <View className="achievement-card" onClick={onClick}>
       <Image className="achievement-card__img" src={cover} mode="aspectFill" />
       <View className="achievement-card__info">
         <View className="achievement-card__title">{title}</View>

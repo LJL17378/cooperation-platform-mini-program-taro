@@ -5,6 +5,9 @@ export default defineAppConfig({
     'pages/function/index',
     'pages/login/index',
     'pages/editInfo/index',
+    'pages/plate/index',
+    'pages/achievement/index',
+    'pages/datum/index',
   ],
   window: {
     backgroundTextStyle: 'light',
