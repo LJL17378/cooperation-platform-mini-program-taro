@@ -8,6 +8,7 @@ export default defineAppConfig({
     'pages/plate/index',
     'pages/achievement/index',
     'pages/datum/index',
+    'pages/news/index',
   ],
   window: {
     backgroundTextStyle: 'light',
