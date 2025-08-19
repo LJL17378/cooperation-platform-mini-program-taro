@@ -9,6 +9,9 @@ export default defineAppConfig({
     'pages/achievement/index',
     'pages/datum/index',
     'pages/news/index',
+    'pages/activity/index',
+    'pages/myActivity/index',
+    'pages/searchPage/index',
   ],
   window: {
     backgroundTextStyle: 'light',

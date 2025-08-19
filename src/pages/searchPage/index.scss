@@ -1,0 +1,53 @@
+.search-page {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+  }
+  
+  &__scrollview {
+    flex: 1;
+  }
+  
+  &__content {
+    padding: 0 25rpx;
+  }
+  
+  &__history {
+    padding: 20rpx 0;
+  }
+  
+  &__history-title {
+    color: rgba(128, 128, 128, 0.623);
+    font-size: 25rpx;
+  }
+  
+  &__divider {
+    margin: 15rpx 0;
+  }
+  
+  &__history-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 25rpx;
+    padding: 10rpx 0;
+  }
+  
+  &__history-icon {
+    height: 25rpx;
+    width: 25rpx;
+    margin-right: 20rpx;
+  }
+  
+  &__history-text {
+    flex: 1;
+  }
+  
+  &__clear-history {
+    color: #00794C;
+    font-size: 25rpx;
+    text-align: center;
+    padding: 20rpx 0;
+  }
+}

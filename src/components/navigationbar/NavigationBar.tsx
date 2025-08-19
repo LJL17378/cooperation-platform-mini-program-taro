@@ -57,12 +57,12 @@ const NavigationBar = (props: NavigationBarProps) => {
     
     if (value) {
       Taro.redirectTo({
-        url: `/pages/searchPage/searchPage?id=${plateId}&type=${type}`
+        url: `/pages/searchPage/index?id=${plateId}&type=${type}`
       })
     } else {
       try {
         Taro.navigateTo({
-          url: `/pages/searchPage/searchPage?id=${plateId}&type=${type}`
+          url: `/pages/searchPage/index?id=${plateId}&type=${type}`
         })
       } catch (err) {
         console.error('页面跳转失败:', err)
